@@ -31,8 +31,13 @@ export default function MenuPage() {
   };
 
   const filteredItems = menuItems?.filter((item) => {
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.description.toLowerCase().includes(searchTerm.toLowerCase());
+    // Enhanced search that looks through name, description, category, and tags
+    const searchLower = searchTerm.toLowerCase();
+    const matchesSearch = searchTerm === "" || 
+                         item.name.toLowerCase().includes(searchLower) ||
+                         item.description.toLowerCase().includes(searchLower) ||
+                         item.category.toLowerCase().includes(searchLower) ||
+                         (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchLower)));
     
     if (activeFilter === "all") return matchesSearch;
     if (activeFilter === "healthy") return matchesSearch && item.tags?.includes("healthy");
