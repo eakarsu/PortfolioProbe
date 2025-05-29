@@ -44,7 +44,14 @@ export default function MenuPage() {
     if (activeFilter === "spicy") return matchesSearch && item.tags?.includes("spicy");
     if (activeFilter === "vegetarian") return matchesSearch && item.tags?.includes("vegetarian");
     if (activeFilter === "vegan") return matchesSearch && item.tags?.includes("vegan");
-    return matchesSearch && item.category === activeFilter;
+    
+    // Debug logging
+    const categoryMatch = item.category === activeFilter;
+    if (activeFilter === "omelets") {
+      console.log(`Item: ${item.name}, Category: ${item.category}, Filter: ${activeFilter}, Match: ${categoryMatch}`);
+    }
+    
+    return matchesSearch && categoryMatch;
   });
 
   const categories = [
