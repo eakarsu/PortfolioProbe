@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import ShoppingCart from "@/components/ShoppingCart";
 import HomePage from "@/pages/HomePage";
 import MenuPage from "@/pages/MenuPage";
+import BuildYourOwnPage from "@/pages/BuildYourOwnPage";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import CheckoutPage from "@/pages/CheckoutPage";
@@ -19,6 +20,7 @@ function Router() {
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/menu" component={MenuPage} />
+      <Route path="/build-your-own" component={BuildYourOwnPage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/checkout" component={CheckoutPage} />

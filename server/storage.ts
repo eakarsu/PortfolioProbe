@@ -47,115 +47,230 @@ export class MemStorage implements IStorage {
 
   private initializeMenuItems() {
     const sampleItems: Omit<MenuItem, 'id'>[] = [
-      // Appetizers
+      // Acai Bowls
       {
-        name: "Bruschetta Trio",
-        description: "Three varieties: classic tomato basil, mushroom truffle, and goat cheese fig",
-        price: "14.99",
-        image: "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "appetizers",
+        name: "Acai Bowl",
+        description: "Acai, Banana, Blueberry, Strawberry, Granola, Coconut, Honey",
+        price: "12.97",
+        image: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "acai-bowls",
+        tags: ["healthy", "vegan"],
+        available: true
+      },
+      
+      // Breakfast Combos
+      {
+        name: "French Toast",
+        description: "Texas style french toast served with butter and syrup",
+        price: "9.95",
+        image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "breakfast-combos",
         tags: [],
         available: true
       },
       {
-        name: "Crispy Calamari",
-        description: "Fresh squid rings with spicy marinara and lemon aioli",
-        price: "16.99",
-        image: "https://images.unsplash.com/photo-1559847844-d721426d6edc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "appetizers",
-        tags: [],
-        available: true
-      },
-      // Main Courses
-      {
-        name: "Grilled Atlantic Salmon",
-        description: "Fresh salmon fillet with seasonal vegetables and lemon herb butter",
-        price: "28.99",
-        image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
-        tags: [],
+        name: "Healthy One",
+        description: "Three egg whites, turkey, spinach, Alpine Lace Swiss, in a whole wheat wrap",
+        price: "11.64",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "breakfast-combos",
+        tags: ["healthy"],
         available: true
       },
       {
-        name: "Truffle Mushroom Pasta",
-        description: "Handmade pasta with wild mushrooms, truffle oil, and parmesan",
-        price: "24.99",
-        image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
-        tags: ["vegetarian"],
-        available: true
-      },
-      {
-        name: "Wagyu Beef Tenderloin",
-        description: "Premium wagyu beef with roasted potatoes and seasonal vegetables",
-        price: "45.99",
-        image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
+        name: "Hungry Man",
+        description: "Three eggs, ham, bacon, sausage, and cheese on a hero",
+        price: "12.95",
+        image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "breakfast-combos",
         tags: [],
         available: true
       },
       {
-        name: "Prime Ribeye Steak",
-        description: "12oz aged ribeye with garlic mashed potatoes and grilled asparagus",
-        price: "42.99",
-        image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
+        name: "Melville Platter",
+        description: "Two eggs, ham, bacon, sausage, home-fries, and toast",
+        price: "12.95",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "breakfast-combos",
         tags: [],
         available: true
       },
+
+      // Cold Sandwiches
       {
-        name: "Wild Mushroom Risotto",
-        description: "Creamy arborio rice with seasonal mushrooms and truffle oil",
-        price: "26.99",
-        image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
-        tags: ["vegetarian"],
+        name: "Balsamic Avocado Hero",
+        description: "Turkey breast, avocado, tomato, romaine lettuce and balsamic vinaigrette",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: ["healthy"],
         available: true
       },
       {
-        name: "Duck Confit",
-        description: "Slow-cooked duck leg with cherry gastrique and roasted root vegetables",
-        price: "34.99",
-        image: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
-        tags: [],
-        available: true
-      },
-      {
-        name: "Quinoa Power Bowl",
-        description: "Nutritious quinoa with roasted vegetables, avocado, and tahini dressing",
-        price: "18.99",
-        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
-        tags: ["vegetarian", "vegan"],
-        available: true
-      },
-      {
-        name: "Signature Beef Burger",
-        description: "Grass-fed beef patty with caramelized onions, aged cheddar, and truffle fries",
-        price: "22.99",
+        name: "Italian Hero",
+        description: "Capicola ham, salami, pepperoni, lettuce, tomato, Provolone cheese and Italian dressing on a hero",
+        price: "17.95",
         image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        category: "mains",
+        category: "cold-sandwiches",
         tags: [],
         available: true
       },
+      {
+        name: "Turkey Club Hero",
+        description: "Roast turkey breast, bacon, lettuce, tomato and mayo on a hero",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+
+      // Hot Sandwiches
+      {
+        name: "Chicken Fiesta Hero",
+        description: "Fried chicken cutlet, fresh mozzarella, roasted red peppers and spicy mayo on a toasted hero",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1606755456206-1f6d5ba933df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "hot-sandwiches",
+        tags: ["spicy"],
+        available: true
+      },
+      {
+        name: "Texas Hero",
+        description: "Fried chicken cutlet, bacon, fried onions, Mozzarella, Cheddar and barbeque sauce on a toasted garlic hero",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "hot-sandwiches",
+        tags: [],
+        available: true
+      },
+
+      // Paninis
+      {
+        name: "California Panini",
+        description: "Turkey breast, tomato, avocado, Mozzarella cheese and Russian dressing",
+        price: "15.95",
+        image: "https://images.unsplash.com/photo-1528736235302-52922df5c122?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "paninis",
+        tags: ["healthy"],
+        available: true
+      },
+      {
+        name: "Chicken Margherita Panini",
+        description: "Grilled chicken, tomatoes, fresh mozzarella, fresh basil and red onions",
+        price: "15.95",
+        image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "paninis",
+        tags: [],
+        available: true
+      },
+
+      // Salads
+      {
+        name: "Chef Salad",
+        description: "Mixed lettuce, ham, eggs, turkey, carrots, Cheddar cheese, cucumber, tomatoes and green peppers",
+        price: "15.95",
+        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "salads",
+        tags: ["healthy"],
+        available: true
+      },
+      {
+        name: "Greek Salad",
+        description: "Romaine lettuce, tomatoes, stuffed grape leaves, green peppers, Feta cheese and black olives",
+        price: "15.95",
+        image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "salads",
+        tags: ["healthy", "vegetarian"],
+        available: true
+      },
+      {
+        name: "Grilled Chicken Caesar Salad",
+        description: "Romaine lettuce, tomatoes, grilled chicken, Parmigiano cheese, croutons, and caesar dressing",
+        price: "15.95",
+        image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "salads",
+        tags: ["healthy"],
+        available: true
+      },
+
+      // Omelets
+      {
+        name: "American Omelet",
+        description: "ham, American cheese, and tomato",
+        price: "10.32",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "omelets",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Mexican Omelet",
+        description: "mushrooms, tomato, onions, jalapeño, and cheese",
+        price: "10.32",
+        image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "omelets",
+        tags: ["spicy"],
+        available: true
+      },
+
+      // Grill Menu
+      {
+        name: "Beef Gyro",
+        description: "Lettuce, tomato, cucumbers, onions, gyro sauce",
+        price: "12.94",
+        image: "https://images.unsplash.com/photo-1563379091639-cdcb3c995001?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "grill-menu",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Philly Cheese Steak",
+        description: "Tender rib-eye steak, sautéed peppers, onions, and mixed Cheese",
+        price: "14.24",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "grill-menu",
+        tags: [],
+        available: true
+      },
+
       // Desserts
       {
-        name: "Chocolate Lava Cake",
-        description: "Warm chocolate cake with molten center, served with vanilla ice cream",
-        price: "12.99",
-        image: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        name: "Chocolate Chip Cookies",
+        description: "Fresh baked chocolate chip cookies",
+        price: "2.29",
+        image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
         category: "desserts",
         tags: [],
         available: true
       },
       {
-        name: "Seasonal Berry Tart",
-        description: "Almond crust with cashew cream and fresh seasonal berries",
-        price: "10.99",
+        name: "Rice Pudding",
+        description: "Creamy homemade rice pudding",
+        price: "4.54",
         image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
         category: "desserts",
-        tags: ["vegan"],
+        tags: [],
+        available: true
+      },
+
+      // Bottled Drinks
+      {
+        name: "Orange Juice",
+        description: "Fresh OJ",
+        price: "3.59",
+        image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "bottled-drinks",
+        tags: ["healthy"],
+        available: true
+      },
+      {
+        name: "Coke 20oz soda",
+        description: "Classic Coca-Cola",
+        price: "3.59",
+        image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "bottled-drinks",
+        tags: [],
         available: true
       }
     ];
