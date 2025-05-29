@@ -1,0 +1,117 @@
+import { Link } from "wouter";
+import { Utensils, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+
+export default function Footer() {
+  const quickLinks = [
+    { name: "Home", path: "/" },
+    { name: "Menu", path: "/menu" },
+    { name: "About Us", path: "/about" },
+    { name: "Contact", path: "/contact" },
+    { name: "Catering", path: "#" },
+  ];
+
+  const customerService = [
+    { name: "Order Tracking", path: "#" },
+    { name: "Returns & Refunds", path: "#" },
+    { name: "FAQ", path: "#" },
+    { name: "Support", path: "#" },
+    { name: "Privacy Policy", path: "#" },
+  ];
+
+  return (
+    <footer className="bg-secondary text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand Section */}
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <Utensils className="h-8 w-8 text-primary" />
+              <span className="text-2xl font-bold">Savory Delights</span>
+            </div>
+            <p className="text-gray-300 mb-4">
+              Bringing gourmet dining experiences directly to your doorstep with fresh ingredients and culinary excellence.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                <Youtube className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-gray-300">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.path}
+                    className="hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Customer Service */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Customer Service</h3>
+            <ul className="space-y-2 text-gray-300">
+              {customerService.map((service) => (
+                <li key={service.name}>
+                  <a href={service.path} className="hover:text-white transition-colors">
+                    {service.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Contact Info</h3>
+            <div className="text-gray-300 space-y-2">
+              <p className="flex items-start">
+                <span className="text-primary mr-2">📍</span>
+                123 Culinary Street, CA 90210
+              </p>
+              <p className="flex items-center">
+                <span className="text-primary mr-2">📞</span>
+                (555) 123-FOOD
+              </p>
+              <p className="flex items-center">
+                <span className="text-primary mr-2">✉️</span>
+                hello@savorydelights.com
+              </p>
+              <p className="flex items-start">
+                <span className="text-primary mr-2">🕒</span>
+                <span>
+                  Mon-Thu: 11AM-10PM<br />
+                  Fri-Sat: 11AM-11PM<br />
+                  Sun: 12PM-9PM
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
+          <p>
+            &copy; 2024 Savory Delights. All rights reserved. Made with ❤️ for food lovers.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
