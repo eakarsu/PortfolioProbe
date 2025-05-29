@@ -95,6 +95,24 @@ export class MemStorage implements IStorage {
         tags: [],
         available: true
       },
+      {
+        name: "Protein Slammer",
+        description: "Five egg whites, extra turkey, Alpine Lace Swiss cheese, on a whole wheat wrap",
+        price: "12.94",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "breakfast-combos",
+        tags: ["healthy"],
+        available: true
+      },
+      {
+        name: "Super Thing",
+        description: "Two eggs, extra bacon, extra sausage, onions, and American cheese",
+        price: "12.94",
+        image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "breakfast-combos",
+        tags: [],
+        available: true
+      },
 
       // Cold Sandwiches
       {
@@ -120,6 +138,96 @@ export class MemStorage implements IStorage {
         description: "Roast turkey breast, bacon, lettuce, tomato and mayo on a hero",
         price: "17.95",
         image: "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Cajun Roast Beef Hero",
+        description: "Cajun roast beef, Cheddar cheese, lettuce, roasted red peppers and creole mayo",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: ["spicy"],
+        available: true
+      },
+      {
+        name: "California Hero",
+        description: "Turkey breast, avocado, lettuce, tomatoes and Russian dressing",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: ["healthy"],
+        available: true
+      },
+      {
+        name: "Chicken Knock Out Hero",
+        description: "Fried chicken cutlet, hot cherry peppers, jalapeño Jack cheese, lettuce, tomato, and horseradish dressing",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1606755456206-1f6d5ba933df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: ["spicy"],
+        available: true
+      },
+      {
+        name: "Dagwood Hero",
+        description: "Roast beef, turkey, ham, American, Swiss, lettuce, tomato, and mayo",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Grandpa Ted Hero",
+        description: "Turkey breast, Genoa salami, cole-slaw and mustard",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Honey Dipped Chicken Hero",
+        description: "Chicken cutlet, Cheddar cheese, romaine lettuce, tomato, and honey dip sauce",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1606755456206-1f6d5ba933df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Italian Grilled Chicken Hero",
+        description: "Grilled chicken, lettuce, roasted red peppers, fresh Mozzarella and pesto sauce",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Monte Christo Hero",
+        description: "Turkey breast, ham, Swiss cheese, lettuce, tomato and Russian dressing",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1567234669003-dce7a7a88821?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Nazareth Hero",
+        description: "Fried chicken cutlet, bacon, Swiss cheese, cole-slaw and Russian dressing",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1606755456206-1f6d5ba933df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "cold-sandwiches",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Roast Beef Deluxe Hero",
+        description: "Roast beef, bacon, Cheddar, lettuce, tomato and mayo",
+        price: "17.95",
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
         category: "cold-sandwiches",
         tags: [],
         available: true
@@ -211,6 +319,33 @@ export class MemStorage implements IStorage {
         image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
         category: "omelets",
         tags: ["spicy"],
+        available: true
+      },
+      {
+        name: "Sausage & Potato Omelet",
+        description: "sausage, home-fries, and cheddar cheese",
+        price: "10.32",
+        image: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "omelets",
+        tags: [],
+        available: true
+      },
+      {
+        name: "Simon's Omelet",
+        description: "avocado, spinach, Feta cheese and salsa",
+        price: "11.64",
+        image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "omelets",
+        tags: ["healthy"],
+        available: true
+      },
+      {
+        name: "Western Omelet",
+        description: "peppers, onions, and ham",
+        price: "10.32",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+        category: "omelets",
+        tags: [],
         available: true
       },
 
