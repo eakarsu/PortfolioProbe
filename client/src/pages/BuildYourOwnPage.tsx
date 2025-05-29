@@ -219,8 +219,16 @@ export default function BuildYourOwnPage() {
   ];
 
   const filteredItems = customizableItems.filter((item) => {
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.description.toLowerCase().includes(searchTerm.toLowerCase());
+    // Enhanced search that looks through name, description, category, and rules
+    const searchLower = searchTerm.toLowerCase();
+    const matchesSearch = searchTerm === "" ||
+                         item.name.toLowerCase().includes(searchLower) ||
+                         item.description.toLowerCase().includes(searchLower) ||
+                         item.category.toLowerCase().includes(searchLower) ||
+                         item.rules.some(rule => 
+                           rule.name.toLowerCase().includes(searchLower) ||
+                           rule.options.some(option => option.name.toLowerCase().includes(searchLower))
+                         );
     
     if (activeCategory === "all") return matchesSearch;
     return matchesSearch && item.category === activeCategory;
