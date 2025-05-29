@@ -35,6 +35,8 @@ export default function MenuPage() {
                          item.description.toLowerCase().includes(searchTerm.toLowerCase());
     
     if (activeFilter === "all") return matchesSearch;
+    if (activeFilter === "healthy") return matchesSearch && item.tags?.includes("healthy");
+    if (activeFilter === "spicy") return matchesSearch && item.tags?.includes("spicy");
     if (activeFilter === "vegetarian") return matchesSearch && item.tags?.includes("vegetarian");
     if (activeFilter === "vegan") return matchesSearch && item.tags?.includes("vegan");
     return matchesSearch && item.category === activeFilter;
@@ -42,11 +44,18 @@ export default function MenuPage() {
 
   const categories = [
     { id: "all", name: "All", icon: null },
-    { id: "appetizers", name: "Appetizers", icon: null },
-    { id: "mains", name: "Main Courses", icon: null },
+    { id: "acai-bowls", name: "Acai Bowls", icon: null },
+    { id: "breakfast-combos", name: "Breakfast Combos", icon: null },
+    { id: "cold-sandwiches", name: "Cold Sandwiches", icon: null },
+    { id: "hot-sandwiches", name: "Hot Sandwiches", icon: null },
+    { id: "paninis", name: "Paninis", icon: null },
+    { id: "salads", name: "Salads", icon: null },
+    { id: "omelets", name: "Omelets", icon: null },
+    { id: "grill-menu", name: "Grill Menu", icon: null },
     { id: "desserts", name: "Desserts", icon: null },
-    { id: "vegetarian", name: "Vegetarian", icon: Leaf },
-    { id: "vegan", name: "Vegan", icon: Sprout },
+    { id: "bottled-drinks", name: "Drinks", icon: null },
+    { id: "healthy", name: "Healthy Options", icon: Leaf },
+    { id: "spicy", name: "Spicy", icon: Sprout },
   ];
 
   const groupedItems = filteredItems?.reduce((acc, item) => {
@@ -125,7 +134,12 @@ export default function MenuPage() {
         ) : (
           <div className="space-y-16">
             {Object.entries(groupedItems || {}).map(([category, items]) => {
-              const categoryName = category === "mains" ? "Main Courses" : 
+              const categoryName = category === "acai-bowls" ? "Acai Bowls" :
+                                  category === "breakfast-combos" ? "Breakfast Combos" :
+                                  category === "cold-sandwiches" ? "Cold Sandwiches" :
+                                  category === "hot-sandwiches" ? "Hot Sandwiches" :
+                                  category === "grill-menu" ? "Grill Menu" :
+                                  category === "bottled-drinks" ? "Drinks" :
                                   category.charAt(0).toUpperCase() + category.slice(1);
               
               return (
