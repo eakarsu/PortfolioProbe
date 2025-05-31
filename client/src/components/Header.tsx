@@ -12,6 +12,7 @@ export default function Header() {
   const navigation = [
     { name: "Home", path: "/" },
     { name: "Menu", path: "/menu" },
+    { name: "Categories", path: "/categories" },
     { name: "Build Your Own", path: "/build-your-own" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
