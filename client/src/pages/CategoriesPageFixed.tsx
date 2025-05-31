@@ -201,13 +201,44 @@ const categoriesData: Category[] = [
     ]
   },
   {
+    name: "Bottled Drinks",
+    image: "🥤",
+    items: [
+      { id: 2, name: "Apple Juice", price: 3.59 },
+      { id: 3, name: "Arizona Iced Cold Brew Green Tea", price: 4.09 },
+      { id: 4, name: "Coke 20oz soda", price: 3.59 },
+      { id: 5, name: "Diet Coke 20oz soda", price: 3.59 },
+      { id: 6, name: "Pepsi 20oz soda", price: 3.59 },
+      { id: 7, name: "Sprite 20oz soda", price: 3.59 },
+      { id: 8, name: "Gatorade Cool Blue", price: 3.59 },
+      { id: 9, name: "Gatorade Fruit Punch", price: 3.59 },
+      { id: 10, name: "Monster", price: 3.50 },
+      { id: 11, name: "Red Bull 8.4 oz.", price: 2.95 },
+      { id: 12, name: "Poland Spring Water 1 L", price: 4.23 },
+      { id: 13, name: "Orange Juice", price: 3.59, description: "OJ" },
+      { id: 14, name: "Snapple 16 oz Peach Tea", price: 2.75 }
+    ]
+  },
+  {
+    name: "Breakfast Combos",
+    image: "🍳",
+    items: [
+      { id: 15, name: "French Toast", price: 9.95, description: "Texas style french toast served with butter and syrup" },
+      { id: 16, name: "Healthy One", price: 11.64, description: "Three egg whites, turkey, spinach, Alpine Lace Swiss, in a whole wheat wrap." },
+      { id: 17, name: "Hungry Man", price: 12.95, description: "Three eggs, ham, bacon, sausage, and cheese on a hero." },
+      { id: 18, name: "Melville Platter", price: 12.95, description: "Two eggs, ham, bacon, sausage, home-fries, and toast." },
+      { id: 19, name: "Protein Slammer", price: 12.94, description: "Five egg whites, extra turkey, Alpine Lace Swiss cheese, on a whole wheat wrap." },
+      { id: 20, name: "Super Thing", price: 12.94, description: "Two eggs, extra bacon, extra sausage, onions, and American cheese." }
+    ]
+  },
+  {
     name: "BYO Breakfast",
     image: "🥯",
     hasRules: true,
     rules: rulesData["BYO Breakfast"],
     items: [
-      { id: 78, name: "Custom Bagel", price: 0.00, description: "Build your own bagel with spreads" },
-      { id: 79, name: "Custom Breakfast", price: 2.60, description: "Build your own breakfast with eggs, meat, and more" }
+      { id: 21, name: "Custom Bagel", price: 0.00, description: "Build your own bagel with spreads" },
+      { id: 22, name: "Custom Breakfast", price: 2.60, description: "Build your own breakfast with eggs, meat, and more" }
     ]
   },
   {
@@ -216,7 +247,17 @@ const categoriesData: Category[] = [
     hasRules: true,
     rules: rulesData["BYO Sandwiches"],
     items: [
-      { id: 80, name: "Custom Sandwich", price: 16.00, description: "Build your own sandwich with bread, protein, cheese, and toppings" }
+      { id: 23, name: "Custom Sandwich", price: 16.00, description: "Build your own sandwich with bread, protein, cheese, and toppings" }
+    ]
+  },
+  {
+    name: "Chips",
+    image: "🍟",
+    items: [
+      { id: 24, name: "Classic Lays", price: 3.24 },
+      { id: 25, name: "Cool Ranch Doritos", price: 3.24 },
+      { id: 26, name: "Nacho Cheese Doritos", price: 3.24 },
+      { id: 27, name: "Spicy Sweet Chili Doritos", price: 3.24 }
     ]
   },
   {
@@ -225,7 +266,7 @@ const categoriesData: Category[] = [
     hasRules: true,
     rules: rulesData["Chopped Salad"],
     items: [
-      { id: 85, name: "Custom Salad", price: 9.95, description: "Build your own salad with fresh ingredients" }
+      { id: 28, name: "Custom Salad", price: 9.95, description: "Build your own salad with fresh ingredients" }
     ]
   },
   {
@@ -234,22 +275,142 @@ const categoriesData: Category[] = [
     hasRules: true,
     rules: rulesData["Coffee"],
     items: [
-      { id: 86, name: "Cappuccino, Large", price: 2.76 },
-      { id: 87, name: "Cappuccino, Medium", price: 2.25 },
-      { id: 88, name: "Cappuccino, Small", price: 1.76 },
-      { id: 89, name: "Columbian Coffee, Large", price: 2.76 },
-      { id: 90, name: "Columbian Coffee, Medium", price: 2.25 },
-      { id: 91, name: "Columbian Coffee, Small", price: 1.76 }
+      { id: 29, name: "Cappuccino, Large", price: 2.76 },
+      { id: 30, name: "Cappuccino, Medium", price: 2.25 },
+      { id: 31, name: "Cappuccino, Small", price: 1.76 },
+      { id: 32, name: "Columbian Coffee, Large", price: 2.76 },
+      { id: 33, name: "Columbian Coffee, Medium", price: 2.25 },
+      { id: 34, name: "Columbian Coffee, Small", price: 1.76 }
     ]
   },
   {
-    name: "Chips",
-    image: "🍟",
+    name: "Tea",
+    image: "🍵",
     items: [
-      { id: 81, name: "Classic Lays", price: 3.24 },
-      { id: 82, name: "Cool Ranch Doritos", price: 3.24 },
-      { id: 83, name: "Nacho Cheese Doritos", price: 3.24 },
-      { id: 84, name: "Spicy Sweet Chili Doritos", price: 3.24 }
+      { id: 35, name: "Green Tea, Large", price: 2.76 },
+      { id: 36, name: "Green Tea, Medium", price: 2.25 },
+      { id: 37, name: "Green Tea, Small", price: 1.76 },
+      { id: 38, name: "Hot Tea, Large", price: 2.76 },
+      { id: 39, name: "Hot Tea, Medium", price: 2.25 },
+      { id: 40, name: "Hot Tea, Small", price: 1.76 }
+    ]
+  },
+  {
+    name: "Cold Sandwiches",
+    image: "🥙",
+    items: [
+      { id: 41, name: "Balsamic Avocado Hero", price: 17.95, description: "Turkey breast, avocado, tomato, romaine lettuce and balsamic vinaigrette." },
+      { id: 42, name: "California Hero", price: 17.95, description: "Turkey breast, avocado, lettuce, tomatoes and Russian dressing." },
+      { id: 43, name: "Italian Hero", price: 17.95, description: "Capicola ham, salami, pepperoni, lettuce, tomato, Provolone cheese and Italian dressing on a hero" },
+      { id: 44, name: "Turkey Club Hero", price: 17.95, description: "Roast turkey breast, bacon, lettuce, tomato and mayo on a hero." },
+      { id: 45, name: "Roast Beef Deluxe Hero", price: 17.95, description: "Roast beef, bacon, Cheddar, lettuce, tomato and mayo." }
+    ]
+  },
+  {
+    name: "Desserts",
+    image: "🍪",
+    items: [
+      { id: 46, name: "Chocolate Chip Cookies", price: 2.29 },
+      { id: 47, name: "Chocolate Pudding", price: 3.89 },
+      { id: 48, name: "Rice Pudding", price: 4.54 }
+    ]
+  },
+  {
+    name: "Grill Menu",
+    image: "🔥",
+    items: [
+      { id: 49, name: "Beef gyro", price: 12.94, description: "Lettuce, tomato, cucumbers, onions, gyro sauce." },
+      { id: 50, name: "Cuban Sandwich", price: 18.12, description: "Pulled pork, ham, Swiss cheese, pickles and tomatoes on a garlic bread hero." },
+      { id: 51, name: "Falafel Wrap", price: 11.64, description: "Falafel, lettuce, onion, cucumber, tomato and tahini sauce." },
+      { id: 52, name: "Philly Cheese Steak", price: 14.24, description: "Tender rib-eye steak, sautéed peppers, onions, and mixed Cheese." },
+      { id: 53, name: "Wrap Supreme", price: 11.64, description: "Chicken tenders, lettuce, tomato, cheese, and ranch dressing." }
+    ]
+  },
+  {
+    name: "Hot Sandwiches",
+    image: "🌭",
+    items: [
+      { id: 54, name: "Chicken Fiesta Hero", price: 17.95, description: "Fried chicken cutlet, fresh mozzarella, roasted red peppers and spicy mayo on a toasted hero." },
+      { id: 55, name: "Texas Hero", price: 17.95, description: "Fried chicken cutlet, bacon, fried onions, Mozzarella, Cheddar and barbeque sauce on a toasted garlic hero." },
+      { id: 56, name: "Original Hero", price: 17.95, description: "Fried chicken cutlet, cucumber, lettuce, tomato, Mozzarella, ranch and hot sauce on a toasted hero." },
+      { id: 57, name: "Melville Spice Hero", price: 17.95, description: "Fried cajun chicken cutlet, bacon, cheddar cheese, lettuce, tomato, and Russian dressing on a toasted hero." }
+    ]
+  },
+  {
+    name: "Iced Tea and Lemonade",
+    image: "🧊",
+    items: [
+      { id: 58, name: "Home-Made Iced Tea, Large", price: 3.50 },
+      { id: 59, name: "Home-Made Iced Tea, Medium", price: 2.76 },
+      { id: 60, name: "Home-Made Lemonade, Large", price: 3.50 },
+      { id: 61, name: "Home-Made Lemonade, Medium", price: 2.76 },
+      { id: 62, name: "Unsweetened Iced Tea, Large", price: 3.50 },
+      { id: 63, name: "Unsweetened Iced Tea, Medium", price: 2.76 }
+    ]
+  },
+  {
+    name: "Muffins & Pastries",
+    image: "🧁",
+    items: [
+      { id: 64, name: "Apple Turnover", price: 3.59 },
+      { id: 65, name: "Banana Nut Muffin", price: 3.59 },
+      { id: 66, name: "Blueberry Muffin", price: 3.59 },
+      { id: 67, name: "Chocolate Chip Muffin", price: 3.59 },
+      { id: 68, name: "Corn Muffin", price: 3.59 },
+      { id: 69, name: "Croissant", price: 3089.00 },
+      { id: 70, name: "Strawberry Cheese Danish", price: 3.59 }
+    ]
+  },
+  {
+    name: "Omelets",
+    image: "🍳",
+    items: [
+      { id: 71, name: "American Omelet", price: 10.32, description: "ham, American cheese, and tomato." },
+      { id: 72, name: "Mexican Omelet", price: 10.32, description: "mushrooms, tomato, onions, jalapeño, and cheese." },
+      { id: 73, name: "Western Omelet", price: 10.32, description: "peppers, onions, and ham." },
+      { id: 74, name: "Simon's Omelet", price: 11.64, description: "avocado, spinach, Feta cheese and salsa." }
+    ]
+  },
+  {
+    name: "Paninis",
+    image: "🥖",
+    items: [
+      { id: 75, name: "California Panini", price: 15.95, description: "Turkey breast, tomato, avocado, Mozzarella cheese and Russian dressing." },
+      { id: 76, name: "Italian Chicken Panini", price: 15.95, description: "Grilled chicken, pesto sauce, roasted red pepper, and fresh mozzarella." },
+      { id: 77, name: "Texas Panini", price: 15.95, description: "Fried chicken cutlet, bacon, fried onions, cheddar cheese and barbeque sauce." },
+      { id: 78, name: "Tuna Cheddar Panini", price: 15.95, description: "Tuna, Cheddar cheese and tomatoes." }
+    ]
+  },
+  {
+    name: "Salads",
+    image: "🥗",
+    items: [
+      { id: 79, name: "Chef Salad", price: 15.95, description: "Mixed lettuce, ham, eggs, turkey, carrots, Cheddar cheese, cucumber, tomatoes and green peppers." },
+      { id: 80, name: "Greek Salad", price: 15.95, description: "Romaine lettuce, tomatoes, stuffed grape leaves, green peppers, Feta cheese and black olives." },
+      { id: 81, name: "Grilled Chicken Caesar Salad", price: 15.95, description: "Romaine lettuce, tomatoes, grilled chicken, Parmigiano cheese, croutons, and caesar dressing." },
+      { id: 82, name: "Santa Fe Salad", price: 15.95, description: "Mixed lettuce, grilled chicken, beans, corn, Cheddar cheese, and crunchy cheese tortilla strips, and Santa Fe dressing." }
+    ]
+  },
+  {
+    name: "Sliced Cold Cuts",
+    image: "🍖",
+    items: [
+      { id: 83, name: "American cheese 1 lb.", price: 11.98 },
+      { id: 84, name: "Boars Head Turkey 1 lb.", price: 15.98 },
+      { id: 85, name: "Boars Head Ham 1 lb.", price: 15.98 },
+      { id: 86, name: "House Roast Beef 1 lb.", price: 17.98 },
+      { id: 87, name: "Swiss cheese 1 lb.", price: 11.98 },
+      { id: 88, name: "Cheddar cheese 1 lb.", price: 11.98 }
+    ]
+  },
+  {
+    name: "Snacks & Light Meals",
+    image: "🥨",
+    items: [
+      { id: 89, name: "Yogurt Parfait", price: 6.99 },
+      { id: 90, name: "Overnight Oats & Berries", price: 6.99 },
+      { id: 91, name: "Peanut Butter & Chocolate Overnight Oats", price: 6.99 },
+      { id: 92, name: "Strawberry Yogurt Parfait", price: 6.99 }
     ]
   }
 ];
