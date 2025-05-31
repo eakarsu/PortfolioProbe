@@ -87,11 +87,21 @@ export default function ContactUsDirectly() {
       setCurrentMessage('');
       
       if (result.success) {
-        // Add API response to history
-        const responseContent = result.response || result.messageSid || 'Message sent successfully';
+        // Extract message content from XML response
+        const apiResult = result as any;
+        let responseContent = apiResult.response || result.messageSid || 'Message sent successfully';
+        
+        // Parse XML to extract message content
+        if (apiResult.response && apiResult.response.includes('<Message>')) {
+          const messageMatch = apiResult.response.match(/<Message>(.*?)<\/Message>/);
+          if (messageMatch) {
+            responseContent = messageMatch[1];
+          }
+        }
+        
         const responseMessage: Message = {
           id: (Date.now() + 1).toString(),
-          content: `API Response: ${responseContent}`,
+          content: responseContent,
           sender: 'user',
           timestamp: new Date().toLocaleTimeString('en-US', { 
             hour: '2-digit', 

@@ -12,6 +12,8 @@ interface SMSResponse {
   success: boolean;
   messageSid?: string;
   error?: string;
+  response?: string;
+  contentType?: string;
 }
 
 // Get Twilio access token from your API
