@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useCart } from "@/contexts/CartContext";
 import { getAIRecommendations, type AIRecommendation } from "@/lib/openai";
 import type { MenuItem } from "@shared/schema";
+import ContactUsDirectly from "@/components/ContactUsDirectly";
 
 export default function HomePage() {
   const { dispatch } = useCart();
@@ -210,6 +211,13 @@ export default function HomePage() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Contact Us Directly Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <ContactUsDirectly />
         </div>
       </section>
 
