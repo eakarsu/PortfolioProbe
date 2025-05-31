@@ -222,28 +222,29 @@ export default function BuildYourOwnPage() {
     // Comprehensive search that looks through name, description, category, rules, and rule options
     const searchLower = searchTerm.toLowerCase().trim();
     
-    let matchesSearch = true;
-    if (searchLower !== "") {
-      matchesSearch = item.name.toLowerCase().includes(searchLower) ||
-                     item.description.toLowerCase().includes(searchLower) ||
-                     item.category.toLowerCase().includes(searchLower) ||
-                     item.rules.some(rule => 
-                       rule.name.toLowerCase().includes(searchLower) ||
-                       rule.options.some(option => 
-                         option.name.toLowerCase().includes(searchLower) ||
-                         option.size.toLowerCase().includes(searchLower)
-                       )
-                     );
+    if (searchLower === "") {
+      // If not searching, apply category filter
+      if (activeCategory === "all") return true;
+      return item.category === activeCategory;
     }
     
-    // If searching, only apply search filter, ignore category filter to show all relevant results
-    if (searchLower !== "") {
-      return matchesSearch;
-    }
+    // Search through all possible text fields
+    const itemNameMatch = item.name.toLowerCase().includes(searchLower);
+    const itemDescMatch = item.description.toLowerCase().includes(searchLower);
+    const itemCatMatch = item.category.toLowerCase().includes(searchLower);
     
-    // If not searching, apply category filter
-    if (activeCategory === "all") return matchesSearch;
-    return matchesSearch && item.category === activeCategory;
+    // Search through rule names and all option names
+    const ruleMatch = item.rules.some(rule => {
+      const ruleNameMatch = rule.name.toLowerCase().includes(searchLower);
+      const optionMatch = rule.options.some(option => {
+        const optionNameMatch = option.name.toLowerCase().includes(searchLower);
+        const optionSizeMatch = option.size.toLowerCase().includes(searchLower);
+        return optionNameMatch || optionSizeMatch;
+      });
+      return ruleNameMatch || optionMatch;
+    });
+    
+    return itemNameMatch || itemDescMatch || itemCatMatch || ruleMatch;
   });
 
   const handleCustomizationChange = (itemId: number, ruleName: string, optionName: string, isChecked: boolean, ruleType: string) => {
