@@ -83,7 +83,7 @@ export default function HomePage() {
                 </Button>
               </Link>
               <Link href="/offers">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-secondary">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 font-semibold">
                   View Offers
                 </Button>
               </Link>
