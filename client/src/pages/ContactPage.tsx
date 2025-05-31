@@ -59,17 +59,17 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: "Location",
-      content: ["123 Culinary Street", "Foodie District, CA 90210", "United States"]
+      content: ["2807 Hampton Drive", "Henrico VA 23233", "United States"]
     },
     {
       icon: Phone,
       title: "Phone",
-      content: ["(555) 123-FOOD", "(555) 123-3663"]
+      content: ["(555) 123-3663", "804-360-1129"]
     },
     {
       icon: Mail,
       title: "Email",
-      content: ["hello@savorydelights.com", "catering@savorydelights.com"]
+      content: ["support@orderlybite.com"]
     },
     {
       icon: Clock,
