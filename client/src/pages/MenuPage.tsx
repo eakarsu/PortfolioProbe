@@ -31,14 +31,23 @@ export default function MenuPage() {
   };
 
   const filteredItems = menuItems?.filter((item) => {
-    // Enhanced search that looks through name, description, category, and tags
-    const searchLower = searchTerm.toLowerCase();
-    const matchesSearch = searchTerm === "" || 
-                         item.name.toLowerCase().includes(searchLower) ||
-                         item.description.toLowerCase().includes(searchLower) ||
-                         item.category.toLowerCase().includes(searchLower) ||
-                         (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchLower)));
+    // Comprehensive search that looks through name, description, category, and tags
+    const searchLower = searchTerm.toLowerCase().trim();
     
+    let matchesSearch = true;
+    if (searchLower !== "") {
+      matchesSearch = item.name.toLowerCase().includes(searchLower) ||
+                     item.description.toLowerCase().includes(searchLower) ||
+                     item.category.toLowerCase().includes(searchLower) ||
+                     (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchLower)));
+    }
+    
+    // If searching, only apply search filter, ignore category filter to show all relevant results
+    if (searchLower !== "") {
+      return matchesSearch;
+    }
+    
+    // If not searching, apply category filter
     if (activeFilter === "all") return matchesSearch;
     if (activeFilter === "healthy") return matchesSearch && item.tags?.includes("healthy");
     if (activeFilter === "spicy") return matchesSearch && item.tags?.includes("spicy");
@@ -81,10 +90,19 @@ export default function MenuPage() {
           </p>
         </div>
 
-        {/* Filters */}
+        {/* Search and Filters */}
         <div className="bg-gray-50 rounded-xl p-6 mb-12">
           <div className="flex flex-col md:flex-row gap-4 items-center">
-            <div className="flex-1"></div>
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Input
+                type="text"
+                placeholder="Search dishes, ingredients, descriptions..."
+                className="pl-10"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => {
                 const Icon = category.icon;
