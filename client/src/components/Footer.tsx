@@ -112,7 +112,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
           <p>
-            &copy; 2024 Savory Delights. All rights reserved. Made with ❤️ for food lovers.
+            &copy; 2024 Orderly Food. All rights reserved. Made with ❤️ for food lovers.
           </p>
         </div>
       </div>

@@ -34,7 +34,7 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <Utensils className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-secondary">
-              Savory Delights
+              Orderly Food
             </span>
           </Link>
 
