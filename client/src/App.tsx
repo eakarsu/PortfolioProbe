@@ -15,6 +15,11 @@ import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import CheckoutPage from "@/pages/CheckoutPage";
 import OffersPage from "@/pages/OffersPage";
+import OrderTrackingPage from "@/pages/OrderTrackingPage";
+import ReturnsRefundsPage from "@/pages/ReturnsRefundsPage";
+import FAQPage from "@/pages/FAQPage";
+import SupportPage from "@/pages/SupportPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -28,6 +33,11 @@ function Router() {
       <Route path="/contact" component={ContactPage} />
       <Route path="/checkout" component={CheckoutPage} />
       <Route path="/offers" component={OffersPage} />
+      <Route path="/order-tracking" component={OrderTrackingPage} />
+      <Route path="/returns-refunds" component={ReturnsRefundsPage} />
+      <Route path="/faq" component={FAQPage} />
+      <Route path="/support" component={SupportPage} />
+      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
       <Route component={NotFound} />
     </Switch>
   );
