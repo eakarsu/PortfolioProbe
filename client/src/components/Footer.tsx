@@ -11,11 +11,11 @@ export default function Footer() {
   ];
 
   const customerService = [
-    { name: "Order Tracking", path: "#" },
-    { name: "Returns & Refunds", path: "#" },
-    { name: "FAQ", path: "#" },
-    { name: "Support", path: "#" },
-    { name: "Privacy Policy", path: "#" },
+    { name: "Order Tracking", path: "/order-tracking" },
+    { name: "Returns & Refunds", path: "/returns-refunds" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Support", path: "/support" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
   ];
 
   return (
@@ -85,10 +85,6 @@ export default function Footer() {
               <p className="flex items-start">
                 <span className="text-primary mr-2">📍</span>
                 2807 Hampton Drive Henrico VA 23233
-              </p>
-              <p className="flex items-center">
-                <span className="text-primary mr-2">📞</span>
-                (555) 123-3663
               </p>
               <p className="flex items-center">
                 <span className="text-primary mr-2">📞</span>
