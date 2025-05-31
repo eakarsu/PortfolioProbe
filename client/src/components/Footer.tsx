@@ -26,7 +26,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Utensils className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">Savory Delights</span>
+              <span className="text-2xl font-bold">Orderly Food</span>
             </div>
             <p className="text-gray-300 mb-4">
               Bringing gourmet dining experiences directly to your doorstep with fresh ingredients and culinary excellence.
@@ -84,15 +84,19 @@ export default function Footer() {
             <div className="text-gray-300 space-y-2">
               <p className="flex items-start">
                 <span className="text-primary mr-2">📍</span>
-                123 Culinary Street, CA 90210
+                2807 Hampton Drive Henrico VA 23233
               </p>
               <p className="flex items-center">
                 <span className="text-primary mr-2">📞</span>
-                (555) 123-FOOD
+                (555) 123-3663
+              </p>
+              <p className="flex items-center">
+                <span className="text-primary mr-2">📞</span>
+                804-360-1129
               </p>
               <p className="flex items-center">
                 <span className="text-primary mr-2">✉️</span>
-                hello@savorydelights.com
+                support@orderlybite.com
               </p>
               <p className="flex items-start">
                 <span className="text-primary mr-2">🕒</span>
