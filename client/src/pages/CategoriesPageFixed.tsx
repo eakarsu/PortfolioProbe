@@ -14,6 +14,19 @@ const getFoodImage = (itemName: string, categoryName: string): string => {
   // Acai Bowls
   if (category.includes("acai")) return "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=300&fit=crop&auto=format";
   
+  // BYO items - Build Your Own
+  if (category.includes("byo") || name.includes("byo")) {
+    if (category.includes("breakfast") || name.includes("bagel") || name.includes("breakfast")) {
+      return "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop&auto=format"; // bagel image
+    }
+    if (category.includes("sandwich") || name.includes("sandwich")) {
+      return "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=400&h=300&fit=crop&auto=format"; // sandwich image
+    }
+    if (category.includes("salad") || name.includes("salad")) {
+      return "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop&auto=format"; // salad image
+    }
+  }
+  
   // Beverages
   if (category.includes("bottled") || category.includes("drink")) {
     if (name.includes("coke") || name.includes("pepsi") || name.includes("sprite")) return "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=300&fit=crop&auto=format";
@@ -60,6 +73,42 @@ const getFoodImage = (itemName: string, categoryName: string): string => {
     if (name.includes("cookie")) return "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop&auto=format";
     if (name.includes("pudding")) return "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=300&fit=crop&auto=format";
     return "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Grill items
+  if (category.includes("grill")) {
+    if (name.includes("gyro")) return "https://images.unsplash.com/photo-1621996346565-e3dbc353d946?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("philly")) return "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("falafel")) return "https://images.unsplash.com/photo-1615937691194-97dbd5ba1086?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Muffins & Pastries
+  if (category.includes("muffin") || category.includes("pastries")) {
+    if (name.includes("muffin")) return "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("danish")) return "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("croissant")) return "https://images.unsplash.com/photo-1555507036-ab794f4d9f53?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Cold cuts
+  if (category.includes("cold cuts") || category.includes("sliced")) {
+    if (name.includes("cheese")) return "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("turkey") || name.includes("ham")) return "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Snacks
+  if (category.includes("snack")) {
+    if (name.includes("yogurt") || name.includes("parfait")) return "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("oats")) return "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Iced tea and lemonade
+  if (category.includes("iced tea") || category.includes("lemonade")) {
+    if (name.includes("lemonade")) return "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?w=400&h=300&fit=crop&auto=format";
   }
   
   // Default food image
