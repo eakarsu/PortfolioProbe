@@ -90,19 +90,10 @@ export default function MenuPage() {
           </p>
         </div>
 
-        {/* Search and Filters */}
+        {/* Filters */}
         <div className="bg-gray-50 rounded-xl p-6 mb-12">
           <div className="flex flex-col md:flex-row gap-4 items-center">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <Input
-                type="text"
-                placeholder="Search dishes, ingredients, descriptions..."
-                className="pl-10"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
+            <div className="flex-1"></div>
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => {
                 const Icon = category.icon;
