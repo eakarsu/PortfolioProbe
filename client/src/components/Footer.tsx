@@ -26,7 +26,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Utensils className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">Orderly Food</span>
+              <span className="text-2xl font-bold">Orderly Bite</span>
             </div>
             <p className="text-gray-300 mb-4">
               Bringing gourmet dining experiences directly to your doorstep with fresh ingredients and culinary excellence.
@@ -112,7 +112,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
           <p>
-            &copy; 2024 Orderly Food. All rights reserved. Made with ❤️ for food lovers.
+            &copy; 2024 Orderly Bite. All rights reserved. Made with ❤️ for food lovers.
           </p>
         </div>
       </div>

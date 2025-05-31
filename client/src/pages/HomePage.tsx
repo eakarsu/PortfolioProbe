@@ -71,7 +71,7 @@ export default function HomePage() {
               <span className="text-accent">Food Ordering Platform</span>
             </h1>
             <p className="text-xl mb-6 text-gray-200">
-              Experience our AI-powered food ordering system with SMS integration, voice calls, and intelligent menu recommendations. This demo showcases Orderly Food - a customizable solution for restaurants and food establishments.
+              Experience our AI-powered food ordering system with SMS integration, voice calls, and intelligent menu recommendations. This demo showcases Orderly Bite - a customizable solution for restaurants and food establishments.
             </p>
             <p className="text-lg mb-8 text-gray-300 bg-black bg-opacity-30 p-4 rounded-lg">
               <strong>Try the Demo:</strong> Send real SMS messages, make actual voice calls, and explore our AI recommendations. This platform can be fully customized for any restaurant or food business.
