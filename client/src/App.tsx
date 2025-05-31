@@ -14,6 +14,7 @@ import CategoriesPage from "@/pages/CategoriesPageImproved";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import CheckoutPage from "@/pages/CheckoutPage";
+import OffersPage from "@/pages/OffersPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />
       <Route path="/checkout" component={CheckoutPage} />
+      <Route path="/offers" component={OffersPage} />
       <Route component={NotFound} />
     </Switch>
   );
