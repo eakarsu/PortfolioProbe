@@ -219,17 +219,29 @@ export default function BuildYourOwnPage() {
   ];
 
   const filteredItems = customizableItems.filter((item) => {
-    // Enhanced search that looks through name, description, category, and rules
-    const searchLower = searchTerm.toLowerCase();
-    const matchesSearch = searchTerm === "" ||
-                         item.name.toLowerCase().includes(searchLower) ||
-                         item.description.toLowerCase().includes(searchLower) ||
-                         item.category.toLowerCase().includes(searchLower) ||
-                         item.rules.some(rule => 
-                           rule.name.toLowerCase().includes(searchLower) ||
-                           rule.options.some(option => option.name.toLowerCase().includes(searchLower))
-                         );
+    // Comprehensive search that looks through name, description, category, rules, and rule options
+    const searchLower = searchTerm.toLowerCase().trim();
     
+    let matchesSearch = true;
+    if (searchLower !== "") {
+      matchesSearch = item.name.toLowerCase().includes(searchLower) ||
+                     item.description.toLowerCase().includes(searchLower) ||
+                     item.category.toLowerCase().includes(searchLower) ||
+                     item.rules.some(rule => 
+                       rule.name.toLowerCase().includes(searchLower) ||
+                       rule.options.some(option => 
+                         option.name.toLowerCase().includes(searchLower) ||
+                         option.size.toLowerCase().includes(searchLower)
+                       )
+                     );
+    }
+    
+    // If searching, only apply search filter, ignore category filter to show all relevant results
+    if (searchLower !== "") {
+      return matchesSearch;
+    }
+    
+    // If not searching, apply category filter
     if (activeCategory === "all") return matchesSearch;
     return matchesSearch && item.category === activeCategory;
   });
