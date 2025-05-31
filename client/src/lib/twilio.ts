@@ -16,28 +16,42 @@ interface SMSResponse {
 
 // Get Twilio access token from your API
 export async function getTwilioToken(): Promise<TwilioToken> {
-  const response = await fetch('https://api.orderlybite.com/token');
-  if (!response.ok) {
-    throw new Error('Failed to get Twilio token');
+  try {
+    const response = await fetch('https://api.orderlybite.com/token');
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to get Twilio token: ${error.message}`);
+    }
+    throw new Error('Failed to get Twilio token: Unknown error');
   }
-  return await response.json();
 }
 
 // Send SMS via your API
 export async function sendSMS(to: string, message: string): Promise<SMSResponse> {
-  const response = await fetch('https://api.orderlybite.com/sms', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ to, message }),
-  });
-  
-  if (!response.ok) {
-    throw new Error('Failed to send SMS');
+  try {
+    const response = await fetch('https://api.orderlybite.com/sms', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ to, message }),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(`Failed to send SMS: ${error.message}`);
+    }
+    throw new Error('Failed to send SMS: Unknown error');
   }
-  
-  return await response.json();
 }
 
 // Make a call using Twilio Voice SDK

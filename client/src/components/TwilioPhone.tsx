@@ -31,11 +31,8 @@ export default function TwilioPhone() {
         });
       } catch (error) {
         console.error('Failed to initialize Twilio device:', error);
-        toast({
-          title: "Connection Failed",
-          description: "Unable to connect to phone system",
-          variant: "destructive",
-        });
+        // Don't show error toast immediately, let user try manually
+        setIsConnected(false);
       }
     };
 
@@ -184,9 +181,15 @@ export default function TwilioPhone() {
           </Tabs>
 
           {!isConnected && (
-            <div className="text-sm text-muted-foreground text-center">
-              <p>Unable to connect to Twilio service.</p>
-              <p>Please check your connection and try again.</p>
+            <div className="text-sm text-muted-foreground text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+              <p className="font-medium text-yellow-800">API Configuration Required</p>
+              <p className="text-yellow-700">
+                To enable calling and SMS features, please configure your Twilio API endpoints:
+              </p>
+              <ul className="text-xs text-yellow-600 mt-2 space-y-1">
+                <li>• https://api.orderlybite.com/token</li>
+                <li>• https://api.orderlybite.com/sms</li>
+              </ul>
             </div>
           )}
         </div>
