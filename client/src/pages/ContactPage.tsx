@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import type { InsertContactMessage } from "@shared/schema";
+import TwilioPhone from "@/components/TwilioPhone";
 
 export default function ContactPage() {
   const { toast } = useToast();
@@ -99,7 +100,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div>
             <h2 className="text-2xl font-bold text-secondary mb-8">Visit Our Kitchen</h2>
@@ -246,6 +247,12 @@ export default function ContactPage() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Twilio Phone System */}
+          <div>
+            <h2 className="text-2xl font-bold text-secondary mb-8">Call or Text Us</h2>
+            <TwilioPhone />
           </div>
         </div>
       </div>
