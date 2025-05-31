@@ -232,7 +232,7 @@ export default function CustomizationModal({
                             checked={isSelected}
                             disabled={isDisabled}
                             onCheckedChange={(checked) => 
-                              handleSelectionChange(rule.name, option.name, checked === true)
+                              handleSelectionChange(rule.name, option.name, Boolean(checked))
                             }
                           />
                           <Label 
