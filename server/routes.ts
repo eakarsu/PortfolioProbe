@@ -179,12 +179,19 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
     try {
       const { to, message } = req.body;
       
+      // Create form data as expected by your API
+      const formData = new URLSearchParams();
+      formData.append('From', to); // Use the customer's phone number as caller ID
+      formData.append('To', '+18044092778'); // Your Twilio number
+      formData.append('Body', message);
+      formData.append('MessageSid', `SM${Date.now()}${Math.random().toString(36).substr(2, 9)}`);
+      
       const response = await fetch('https://api.orderlybite.com/sms', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({ to, message }),
+        body: formData.toString(),
       });
       
       if (!response.ok) {
@@ -192,7 +199,7 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
       }
       
       const data = await response.json();
-      res.json(data);
+      res.json({ success: true, ...data });
     } catch (error) {
       console.error("Error sending SMS:", error);
       res.status(500).json({ error: "Failed to send SMS" });
