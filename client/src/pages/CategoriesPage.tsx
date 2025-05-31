@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, ShoppingCart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
+import CustomizationModal from "@/components/CustomizationModal";
 
 // Helper function to get food image based on item name and category
 const getFoodImage = (itemName: string, categoryName: string): string => {
@@ -105,7 +106,103 @@ const getFoodImage = (itemName: string, categoryName: string): string => {
   return "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop&auto=format";
 };
 
-// Category data extracted from prompt2.txt
+// Rules data from rules.txt
+const rulesData: Record<string, Rule[]> = {
+  "BYO Breakfast": [
+    {
+      name: "Bagel Options",
+      type: "select_one",
+      options: [
+        { name: "Cinnamon Raisin", price: 1.50, size: "Small" },
+        { name: "Egg", price: 1.50, size: "Small" },
+        { name: "Everything", price: 1.50, size: "Small" },
+        { name: "Plain", price: 1.50, size: "Small" },
+        { name: "Whole Wheat", price: 1.50, size: "Small" }
+      ]
+    },
+    {
+      name: "Bagel Spreads",
+      type: "select_multiple",
+      max_selections: 6,
+      options: [
+        { name: "Butter", price: 1.00, size: "Small" },
+        { name: "Cream Cheese", price: 2.00, size: "Small" },
+        { name: "Bacon", price: 4.00, size: "Small" },
+        { name: "Lox", price: 6.00, size: "Small" }
+      ]
+    }
+  ],
+  "BYO Sandwiches": [
+    {
+      name: "Bread",
+      type: "select_one",
+      options: [
+        { name: "Hero", price: 1.00, size: "Medium" },
+        { name: "Roll", price: 0.00, size: "Medium" },
+        { name: "White Wrap", price: 1.00, size: "Medium" },
+        { name: "Whole Wheat Wrap", price: 1.00, size: "Medium" }
+      ]
+    },
+    {
+      name: "Protein",
+      type: "select_multiple",
+      max_selections: 3,
+      options: [
+        { name: "Grilled chicken", price: 2.00, size: "Medium" },
+        { name: "Turkey", price: 2.00, size: "Medium" },
+        { name: "Ham", price: 2.00, size: "Medium" },
+        { name: "Roast beef", price: 3.00, size: "Medium" }
+      ]
+    },
+    {
+      name: "Toppings",
+      type: "select_multiple",
+      max_selections: 5,
+      options: [
+        { name: "Lettuce", price: 1.00, size: "Medium" },
+        { name: "Tomato", price: 1.00, size: "Medium" },
+        { name: "Onion", price: 0.75, size: "Medium" },
+        { name: "Cheese", price: 1.00, size: "Medium" }
+      ]
+    }
+  ],
+  "Chopped Salad": [
+    {
+      name: "Salad Base",
+      type: "select_one",
+      options: [
+        { name: "Mixed Greens", price: 0.00, size: "Small" },
+        { name: "Romaine", price: 0.00, size: "Small" },
+        { name: "Spinach", price: 0.00, size: "Small" }
+      ]
+    },
+    {
+      name: "Salad Add-ons",
+      type: "select_multiple",
+      max_selections: 5,
+      options: [
+        { name: "Grilled chicken", price: 2.00, size: "Small" },
+        { name: "Feta cheese", price: 2.00, size: "Small" },
+        { name: "Tomatoes", price: 0.50, size: "Small" },
+        { name: "Cucumber", price: 0.50, size: "Small" }
+      ]
+    }
+  ],
+  "Coffee": [
+    {
+      name: "Coffee Creamers",
+      type: "select_one",
+      options: [
+        { name: "Milk", price: 0.00, size: "Small" },
+        { name: "Half and Half", price: 0.00, size: "Small" },
+        { name: "French Vanilla", price: 0.00, size: "Small" },
+        { name: "Hazelnut", price: 0.00, size: "Small" }
+      ]
+    }
+  ]
+};
+
+// Category data extracted from prompt2.txt  
 const categoriesData = [
   {
     name: "Acai Bowls",
@@ -211,6 +308,7 @@ const categoriesData = [
     name: "BYO Breakfast",
     image: "🥯",
     hasRules: true,
+    rules: rulesData["BYO Breakfast"],
     items: [
       { id: 78, name: "Bagel", price: 0.00, description: "Build your own bagel with spreads" },
       { id: 79, name: "Breakfast", price: 2.60, description: "Build your own breakfast with eggs, meat, and more" }
@@ -220,6 +318,7 @@ const categoriesData = [
     name: "BYO Sandwiches",
     image: "🥪",
     hasRules: true,
+    rules: rulesData["BYO Sandwiches"],
     items: [
       { id: 80, name: "BYO Sandwiches", price: 16.00, description: "Build your own sandwich with bread, protein, cheese, and toppings" }
     ]
@@ -238,6 +337,7 @@ const categoriesData = [
     name: "Chopped Salad",
     image: "🥗",
     hasRules: true,
+    rules: rulesData["Chopped Salad"],
     items: [
       { id: 85, name: "BYO Salad", price: 9.95, description: "Build your own salad with fresh ingredients" }
     ]
@@ -246,6 +346,7 @@ const categoriesData = [
     name: "Coffee",
     image: "☕",
     hasRules: true,
+    rules: rulesData["Coffee"],
     items: [
       { id: 86, name: "Cappuccino, Columbian Coffee, Large", price: 2.76 },
       { id: 87, name: "Cappuccino, Columbian Coffee, Medium", price: 2.25 },
@@ -526,15 +627,177 @@ interface CategoryItem {
   description?: string;
 }
 
+interface RuleOption {
+  name: string;
+  price: number;
+  size: string;
+}
+
+interface Rule {
+  name: string;
+  type: "select_one" | "select_multiple";
+  max_selections?: number;
+  options: RuleOption[];
+}
+
 interface Category {
   name: string;
   image: string;
   hasRules?: boolean;
+  rules?: Rule[];
   items: CategoryItem[];
 }
 
+// Rules data from rules.txt
+const rulesData: Record<string, Rule[]> = {
+  "BYO Breakfast": [
+    {
+      name: "Bagel Options",
+      type: "select_one",
+      options: [
+        { name: "Cinnamon Raisin", price: 1.50, size: "Small" },
+        { name: "Egg", price: 1.50, size: "Small" },
+        { name: "Egg Everything", price: 1.50, size: "Small" },
+        { name: "Everything", price: 1.50, size: "Small" },
+        { name: "Everything Flat", price: 2.00, size: "Small" },
+        { name: "Hero", price: 0.00, size: "Small" },
+        { name: "Onion", price: 1.50, size: "Small" },
+        { name: "Plain", price: 1.50, size: "Small" },
+        { name: "Plain Flat", price: 2.00, size: "Small" },
+        { name: "Poppy", price: 1.50, size: "Small" },
+        { name: "Poppy Flat", price: 2.00, size: "Small" },
+        { name: "Salt", price: 1.50, size: "Small" },
+        { name: "Sesame", price: 1.50, size: "Small" },
+        { name: "Sesame Flat", price: 2.00, size: "Small" },
+        { name: "Whole Wheat", price: 1.50, size: "Small" },
+        { name: "Whole Wheat Everything", price: 1.50, size: "Small" }
+      ]
+    },
+    {
+      name: "Bagel Spreads",
+      type: "select_multiple",
+      max_selections: 6,
+      options: [
+        { name: "Bacon", price: 4.00, size: "Small" },
+        { name: "Butter", price: 1.00, size: "Small" },
+        { name: "Cream Cheese", price: 2.00, size: "Small" },
+        { name: "Double toasted", price: 0.00, size: "Small" },
+        { name: "Grape Jelly", price: 1.00, size: "Small" },
+        { name: "Green Olive Cream Cheese", price: 2.50, size: "Small" },
+        { name: "Lox", price: 6.00, size: "Small" },
+        { name: "Onion", price: 0.75, size: "Small" },
+        { name: "Peanut Butter", price: 2.00, size: "Small" },
+        { name: "Plain", price: 0.00, size: "Small" },
+        { name: "Scallion Cream Cheese", price: 2.50, size: "Small" },
+        { name: "Toasted", price: 0.00, size: "Small" },
+        { name: "Tomato", price: 0.75, size: "Small" },
+        { name: "Vegetable Cream Cheese", price: 2.50, size: "Small" }
+      ]
+    }
+  ],
+  "BYO Sandwiches": [
+    {
+      name: "Bread",
+      type: "select_one",
+      options: [
+        { name: "Cinnamon Raisin Bagel", price: 0.50, size: "Medium" },
+        { name: "Croissant", price: 2.00, size: "Medium" },
+        { name: "Egg Bagel", price: 0.50, size: "Medium" },
+        { name: "Hero", price: 1.00, size: "Medium" },
+        { name: "Plain Bagel", price: 0.50, size: "Medium" },
+        { name: "Roll", price: 0.00, size: "Medium" },
+        { name: "White Wrap", price: 1.00, size: "Medium" },
+        { name: "Whole Wheat Wrap", price: 1.00, size: "Medium" }
+      ]
+    },
+    {
+      name: "Protein",
+      type: "select_multiple",
+      max_selections: 5,
+      options: [
+        { name: "Bacon", price: 3.00, size: "Medium" },
+        { name: "Grilled chicken", price: 2.00, size: "Medium" },
+        { name: "Ham", price: 2.00, size: "Medium" },
+        { name: "Honey turkey", price: 3.00, size: "Medium" },
+        { name: "Roast beef", price: 3.00, size: "Medium" },
+        { name: "Turkey", price: 2.00, size: "Medium" },
+        { name: "Tuna salad", price: 2.00, size: "Medium" }
+      ]
+    },
+    {
+      name: "Cheese",
+      type: "select_multiple",
+      max_selections: 5,
+      options: [
+        { name: "American Cheese", price: 1.00, size: "Medium" },
+        { name: "Cheddar", price: 1.00, size: "Medium" },
+        { name: "Swiss", price: 1.00, size: "Medium" },
+        { name: "Provolone", price: 1.00, size: "Medium" }
+      ]
+    },
+    {
+      name: "Toppings",
+      type: "select_multiple",
+      max_selections: 10,
+      options: [
+        { name: "Lettuce", price: 1.00, size: "Medium" },
+        { name: "Tomato", price: 1.00, size: "Medium" },
+        { name: "Onion", price: 0.75, size: "Medium" },
+        { name: "Avocado", price: 1.50, size: "Medium" },
+        { name: "Cucumber", price: 0.75, size: "Medium" }
+      ]
+    }
+  ],
+  "Chopped Salad": [
+    {
+      name: "Salad Base",
+      type: "select_one",
+      options: [
+        { name: "Mixed Greens", price: 0.00, size: "Small" },
+        { name: "Romaine", price: 0.00, size: "Small" },
+        { name: "Spinach", price: 0.00, size: "Small" }
+      ]
+    },
+    {
+      name: "Salad Add-ons",
+      type: "select_multiple",
+      max_selections: 10,
+      options: [
+        { name: "Grilled chicken", price: 2.00, size: "Small" },
+        { name: "Grilled Salmon", price: 3.00, size: "Small" },
+        { name: "Marinated Steak", price: 3.00, size: "Small" },
+        { name: "Feta cheese", price: 2.00, size: "Small" },
+        { name: "Cheddar cheese", price: 2.00, size: "Small" },
+        { name: "Tomatoes", price: 0.50, size: "Small" },
+        { name: "Cucumber", price: 0.50, size: "Small" },
+        { name: "Croutons", price: 0.50, size: "Small" }
+      ]
+    }
+  ],
+  "Coffee": [
+    {
+      name: "Coffee Creamers",
+      type: "select_one",
+      options: [
+        { name: "Milk", price: 0.00, size: "Small" },
+        { name: "Fat-Free Milk", price: 0.00, size: "Small" },
+        { name: "Half and Half", price: 0.00, size: "Small" },
+        { name: "French Vanilla", price: 0.00, size: "Small" },
+        { name: "Irish Cream", price: 0.00, size: "Small" },
+        { name: "Caramel", price: 0.00, size: "Small" },
+        { name: "Hazelnut", price: 0.00, size: "Small" }
+      ]
+    }
+  ]
+};
+
 export default function CategoriesPage() {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [customizationModal, setCustomizationModal] = useState<{
+    isOpen: boolean;
+    item?: CategoryItem;
+    category?: Category;
+  }>({ isOpen: false });
   const { dispatch } = useCart();
   const { toast } = useToast();
 
@@ -548,14 +811,24 @@ export default function CategoriesPage() {
     setExpandedCategories(newExpanded);
   };
 
-  const handleAddToCart = (item: CategoryItem) => {
+  const handleAddToCart = (item: CategoryItem, category: Category) => {
+    // Check if item has rules (customizable)
+    if (category.hasRules) {
+      setCustomizationModal({
+        isOpen: true,
+        item,
+        category
+      });
+      return;
+    }
+    
     dispatch({
       type: "ADD_ITEM",
       payload: {
         id: item.id,
         name: item.name,
         price: item.price,
-        image: "/placeholder-food.jpg"
+        image: getFoodImage(item.name, category.name)
       }
     });
     
@@ -629,12 +902,12 @@ export default function CategoriesPage() {
                             <p className="text-primary font-bold mt-2">${item.price.toFixed(2)}</p>
                           </div>
                           <Button
-                            onClick={() => handleAddToCart(item)}
+                            onClick={() => handleAddToCart(item, category)}
                             size="sm"
                             className="ml-4 bg-primary hover:bg-primary/90 flex-shrink-0"
                           >
                             <ShoppingCart size={16} className="mr-1" />
-                            Add
+                            {category.hasRules ? "Customize" : "Add"}
                           </Button>
                         </div>
                       ))}
