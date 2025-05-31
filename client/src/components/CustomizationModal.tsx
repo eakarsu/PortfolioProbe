@@ -164,6 +164,10 @@ export default function CustomizationModal({
                   src={itemImage}
                   alt={item.name}
                   className="w-20 h-20 object-cover rounded-lg"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop&auto=format";
+                  }}
                 />
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold">{item.name}</h3>
