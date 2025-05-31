@@ -195,10 +195,26 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
       });
       
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        const errorText = await response.text();
+        throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
       }
       
-      const data = await response.json();
+      // Handle both XML and JSON responses
+      const responseText = await response.text();
+      let data;
+      
+      try {
+        // Try to parse as JSON first
+        data = JSON.parse(responseText);
+      } catch (e) {
+        // If it's XML or plain text, return it as is
+        data = { 
+          success: true, 
+          response: responseText,
+          contentType: response.headers.get('content-type') || 'unknown'
+        };
+      }
+      
       res.json({ success: true, ...data });
     } catch (error) {
       console.error("Error sending SMS:", error);

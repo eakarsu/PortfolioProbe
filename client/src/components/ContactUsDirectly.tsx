@@ -71,10 +71,27 @@ export default function ContactUsDirectly() {
     setIsSending(true);
     try {
       const result = await sendSMS(phoneNumber, currentMessage);
+      
+      // Add user message to history
+      const userMessage: Message = {
+        id: Date.now().toString(),
+        content: currentMessage,
+        sender: 'user',
+        timestamp: new Date().toLocaleTimeString('en-US', { 
+          hour: '2-digit', 
+          minute: '2-digit',
+          hour12: false 
+        })
+      };
+      setMessages(prev => [...prev, userMessage]);
+      setCurrentMessage('');
+      
       if (result.success) {
-        const newMessage: Message = {
-          id: Date.now().toString(),
-          content: currentMessage,
+        // Add API response to history
+        const responseContent = result.response || result.messageSid || 'Message sent successfully';
+        const responseMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          content: `API Response: ${responseContent}`,
           sender: 'user',
           timestamp: new Date().toLocaleTimeString('en-US', { 
             hour: '2-digit', 
@@ -82,8 +99,8 @@ export default function ContactUsDirectly() {
             hour12: false 
           })
         };
-        setMessages(prev => [...prev, newMessage]);
-        setCurrentMessage('');
+        setMessages(prev => [...prev, responseMessage]);
+        
         toast({
           title: "Message Sent",
           description: `SMS sent successfully to ${phoneNumber}`,
