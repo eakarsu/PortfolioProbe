@@ -84,6 +84,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Contact Us Directly Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <ContactUsDirectly />
+        </div>
+      </section>
+
       {/* Featured Dishes */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -211,13 +218,6 @@ export default function HomePage() {
               ))}
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Contact Us Directly Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <ContactUsDirectly />
         </div>
       </section>
 
