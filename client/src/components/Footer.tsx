@@ -70,9 +70,12 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-300">
               {customerService.map((service) => (
                 <li key={service.name}>
-                  <a href={service.path} className="hover:text-white transition-colors">
+                  <Link
+                    href={service.path}
+                    className="hover:text-white transition-colors"
+                  >
                     {service.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
