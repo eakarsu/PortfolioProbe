@@ -218,6 +218,34 @@ export default function BuildYourOwnPage() {
     { id: "salads", name: "Salads" }
   ];
 
+  // Function to filter rules and options based on search term
+  const getFilteredRules = (item: CustomizableItem, searchTerm: string) => {
+    const searchLower = searchTerm.toLowerCase().trim();
+    
+    if (searchLower === "") {
+      return item.rules; // No search, return all rules
+    }
+    
+    return item.rules
+      .map(rule => {
+        const ruleNameMatch = rule.name.toLowerCase().includes(searchLower);
+        const filteredOptions = rule.options.filter(option => 
+          option.name.toLowerCase().includes(searchLower) ||
+          option.size.toLowerCase().includes(searchLower)
+        );
+        
+        // Include rule if rule name matches OR if it has matching options
+        if (ruleNameMatch || filteredOptions.length > 0) {
+          return {
+            ...rule,
+            options: ruleNameMatch ? rule.options : filteredOptions // Show all options if rule name matches, otherwise filtered options
+          };
+        }
+        return null;
+      })
+      .filter(rule => rule !== null) as Rule[];
+  };
+
   const filteredItems = customizableItems.filter((item) => {
     // Comprehensive search that looks through name, description, category, rules, and rule options
     const searchLower = searchTerm.toLowerCase().trim();
@@ -403,7 +431,7 @@ export default function BuildYourOwnPage() {
 
                     {/* Customization Rules */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {item.rules.map((rule) => (
+                      {getFilteredRules(item, searchTerm).map((rule) => (
                         <div key={rule.name} className="space-y-3">
                           <h4 className="font-semibold text-secondary">
                             {rule.name}
