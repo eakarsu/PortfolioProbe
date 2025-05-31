@@ -64,7 +64,7 @@ export default function ContactPage() {
     {
       icon: Phone,
       title: "Phone",
-      content: ["(555) 123-3663", "804-360-1129"]
+      content: ["804-360-1129"]
     },
     {
       icon: Mail,
@@ -131,7 +131,7 @@ export default function ContactPage() {
                 <div className="text-center text-gray-500">
                   <MapPin className="h-12 w-12 mx-auto mb-2" />
                   <p className="font-semibold">Interactive Map</p>
-                  <p className="text-sm">123 Culinary Street, Foodie District</p>
+                  <p className="text-sm">2807 Hampton Drive<br />Henrico VA 23233<br />United States</p>
                 </div>
               </CardContent>
             </Card>
