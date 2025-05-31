@@ -1,6 +1,6 @@
 interface TwilioToken {
   token: string;
-  identity: string;
+  identity?: string;
 }
 
 interface SMSRequest {
@@ -17,7 +17,12 @@ interface SMSResponse {
 // Get Twilio access token from your API
 export async function getTwilioToken(): Promise<TwilioToken> {
   try {
-    const response = await fetch('https://api.orderlybite.com/token');
+    const response = await fetch('/api/twilio/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
@@ -33,7 +38,7 @@ export async function getTwilioToken(): Promise<TwilioToken> {
 // Send SMS via your API
 export async function sendSMS(to: string, message: string): Promise<SMSResponse> {
   try {
-    const response = await fetch('https://api.orderlybite.com/sms', {
+    const response = await fetch('/api/twilio/sms', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -104,14 +109,19 @@ export async function initializeTwilioDevice(): Promise<any> {
     const { Device } = await import('@twilio/voice-sdk');
     const tokenData = await getTwilioToken();
     
-    const device = new Device(tokenData.token);
+    console.log('Initializing Twilio Device with token...');
+    
+    const device = new Device(tokenData.token, {
+      logLevel: 'debug',
+      allowIncomingWhileBusy: true
+    });
     
     device.on('ready', () => {
       console.log('Twilio Device ready for incoming calls');
     });
     
     device.on('incoming', (call) => {
-      console.log('Incoming call from:', call.parameters.From);
+      console.log('Incoming call from:', call.parameters?.From || 'Unknown');
       // Auto-accept incoming calls or show UI to accept/reject
       call.accept();
     });
@@ -120,7 +130,13 @@ export async function initializeTwilioDevice(): Promise<any> {
       console.error('Twilio Device error:', error);
     });
     
+    device.on('tokenWillExpire', () => {
+      console.log('Token will expire, refreshing...');
+      // Refresh token if needed
+    });
+    
     await device.register();
+    console.log('Twilio Device registered successfully');
     return device;
     
   } catch (error) {

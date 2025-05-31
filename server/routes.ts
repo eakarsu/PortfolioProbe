@@ -152,6 +152,53 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
     }
   });
 
+  // Twilio token endpoint (proxy to your external API)
+  app.post("/api/twilio/token", async (req, res) => {
+    try {
+      const response = await fetch('https://api.orderlybite.com/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      res.json(data);
+    } catch (error) {
+      console.error("Error getting Twilio token:", error);
+      res.status(500).json({ error: "Failed to get Twilio token" });
+    }
+  });
+
+  // Twilio SMS endpoint (proxy to your external API)
+  app.post("/api/twilio/sms", async (req, res) => {
+    try {
+      const { to, message } = req.body;
+      
+      const response = await fetch('https://api.orderlybite.com/sms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ to, message }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      res.json(data);
+    } catch (error) {
+      console.error("Error sending SMS:", error);
+      res.status(500).json({ error: "Failed to send SMS" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
