@@ -19,7 +19,7 @@ export default function OffersPage() {
       validUntil: "2024-12-31",
       originalPrice: 45.00,
       offerPrice: 30.00,
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300",
       features: ["AI-curated selection", "Nutritionally balanced", "Personalized for you"],
       isPopular: true
     },
