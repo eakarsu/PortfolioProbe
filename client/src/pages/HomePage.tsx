@@ -82,9 +82,11 @@ export default function HomePage() {
                   Explore Menu
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-secondary">
-                View Offers
-              </Button>
+              <Link href="/offers">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-secondary">
+                  View Offers
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
