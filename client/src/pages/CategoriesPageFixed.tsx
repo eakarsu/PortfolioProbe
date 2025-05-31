@@ -237,8 +237,8 @@ const categoriesData: Category[] = [
     hasRules: true,
     rules: rulesData["BYO Breakfast"],
     items: [
-      { id: 21, name: "Custom Bagel", price: 0.00, description: "Build your own bagel with spreads" },
-      { id: 22, name: "Custom Breakfast", price: 2.60, description: "Build your own breakfast with eggs, meat, and more" }
+      { id: 21, name: "Bagel", price: 0.00, description: "Build your own bagel with spreads" },
+      { id: 22, name: "Breakfast", price: 2.60, description: "Build your own breakfast with eggs, meat, and more" }
     ]
   },
   {
@@ -247,7 +247,7 @@ const categoriesData: Category[] = [
     hasRules: true,
     rules: rulesData["BYO Sandwiches"],
     items: [
-      { id: 23, name: "Custom Sandwich", price: 16.00, description: "Build your own sandwich with bread, protein, cheese, and toppings" }
+      { id: 23, name: "BYO Sandwiches", price: 16.00, description: "Build your own sandwich with bread, protein, cheese, and toppings" }
     ]
   },
   {
@@ -266,7 +266,7 @@ const categoriesData: Category[] = [
     hasRules: true,
     rules: rulesData["Chopped Salad"],
     items: [
-      { id: 28, name: "Custom Salad", price: 9.95, description: "Build your own salad with fresh ingredients" }
+      { id: 28, name: "BYO Salad", price: 9.95, description: "Build your own salad with fresh ingredients" }
     ]
   },
   {
