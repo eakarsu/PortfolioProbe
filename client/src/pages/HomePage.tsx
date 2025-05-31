@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Clock, Award, Heart, Brain, Leaf, Star } from "lucide-react";
+import { Clock, Award, Heart, Brain, Leaf, Star, MessageSquare, Phone, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -57,18 +57,24 @@ export default function HomePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')",
           }}
         />
         <div className="absolute inset-0 bg-black bg-opacity-40" />
         <div className="relative container mx-auto px-4 h-full flex items-center">
-          <div className="text-white max-w-2xl">
+          <div className="text-white max-w-3xl">
+            <div className="bg-blue-600 text-white px-4 py-2 rounded-lg inline-block mb-4">
+              🚀 DEMO SITE - Test Our AI-Powered Food Ordering Platform
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-              Culinary Excellence<br />
-              <span className="text-accent">Delivered Fresh</span>
+              Next-Generation<br />
+              <span className="text-accent">Food Ordering Platform</span>
             </h1>
-            <p className="text-xl mb-8 text-gray-200">
-              Experience gourmet dining from the comfort of your home with our chef-crafted dishes and premium ingredients.
+            <p className="text-xl mb-6 text-gray-200">
+              Experience our AI-powered food ordering system with SMS integration, voice calls, and intelligent menu recommendations. This demo showcases Savory Delights - a customizable solution for restaurants and food establishments.
+            </p>
+            <p className="text-lg mb-8 text-gray-300 bg-black bg-opacity-30 p-4 rounded-lg">
+              <strong>Try the Demo:</strong> Send real SMS messages, make actual voice calls, and explore our AI recommendations. This platform can be fully customized for any restaurant or food business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/menu">
@@ -140,6 +146,70 @@ export default function HomePage() {
                 </Card>
               ))
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* AI-Powered Features Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">AI-Powered Food Ordering Technology</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto mb-8">
+              Our cutting-edge platform combines artificial intelligence with seamless communication technology to revolutionize the food ordering experience for restaurants and customers alike.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <Brain className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Smart Recommendations</h3>
+              <p className="text-gray-600">AI analyzes preferences and order history to suggest personalized menu items</p>
+            </Card>
+
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <MessageSquare className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">SMS Integration</h3>
+              <p className="text-gray-600">Real-time SMS ordering and customer communication with automated responses</p>
+            </Card>
+
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <Phone className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Voice Ordering</h3>
+              <p className="text-gray-600">Integrated voice calling system for direct customer-restaurant communication</p>
+            </Card>
+
+            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
+              <Settings className="h-12 w-12 text-orange-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Custom Solutions</h3>
+              <p className="text-gray-600">Fully customizable platform tailored to any restaurant or food business needs</p>
+            </Card>
+          </div>
+
+          <div className="bg-white rounded-lg p-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-center mb-6">Platform Capabilities Showcase</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold mb-4 text-blue-600">For Restaurant Owners:</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• Complete menu management with customization rules</li>
+                  <li>• Real-time order processing and notifications</li>
+                  <li>• Customer communication via SMS and voice</li>
+                  <li>• AI-driven sales analytics and insights</li>
+                  <li>• Multi-channel ordering (web, SMS, phone)</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-4 text-green-600">For Customers:</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li>• Personalized menu recommendations</li>
+                  <li>• Flexible ordering through multiple channels</li>
+                  <li>• Real-time order tracking and updates</li>
+                  <li>• Custom meal builder with smart suggestions</li>
+                  <li>• Seamless payment and delivery coordination</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
