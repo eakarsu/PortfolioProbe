@@ -175,9 +175,9 @@ export default function ContactUsDirectly() {
   return (
     <div className="bg-gradient-to-br from-red-50 to-green-50 p-8 rounded-3xl max-w-2xl mx-auto">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-red-400 mb-4">Contact Us Directly</h2>
+        <h2 className="text-3xl font-bold text-red-400 mb-4">Demo: Live Communication System</h2>
         <p className="text-gray-600 text-lg">
-          Place your order or inquire about our daily specials
+          Test our real SMS and voice call features! This demo system sends actual messages and makes real calls to showcase our food ordering platform's communication capabilities.
         </p>
       </div>
 
