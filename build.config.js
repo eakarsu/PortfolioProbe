@@ -39,22 +39,27 @@ await build({
   define: {
     'process.env.NODE_ENV': '"production"'
   },
-  banner: {
-    js: `
-// Production build - disable Vite imports
-const originalImport = globalThis.__import || globalThis.import;
-globalThis.__import = function(specifier) {
-  if (specifier === 'vite' || specifier.includes('vite')) {
-    return Promise.resolve({
-      createServer: () => { throw new Error('Vite not available in production'); },
-      createLogger: () => ({ error: console.error, warn: console.warn, info: console.info }),
-      default: {}
-    });
-  }
-  return originalImport(specifier);
-};
-`
-  }
+  plugins: [
+    {
+      name: 'exclude-vite',
+      setup(build) {
+        // Resolve vite imports to empty module in production
+        build.onResolve({ filter: /^\.\/vite(\.js)?$/ }, () => ({
+          path: 'vite-stub',
+          namespace: 'vite-stub'
+        }));
+        
+        build.onLoad({ filter: /.*/, namespace: 'vite-stub' }, () => ({
+          contents: `
+            export const setupVite = () => {};
+            export const serveStatic = () => {};
+            export const log = () => {};
+          `,
+          loader: 'js'
+        }));
+      }
+    }
+  ]
 });
 
 console.log('Server build completed');

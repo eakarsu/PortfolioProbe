@@ -60,9 +60,18 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    const { setupVite } = await import("./vite");
-    await setupVite(app, server);
+  if (process.env.NODE_ENV === "development") {
+    try {
+      const { setupVite } = await import("./vite.js");
+      await setupVite(app, server);
+    } catch (error) {
+      log("Vite setup failed, falling back to static serving", "server");
+      const path = await import("path");
+      app.use(express.static(path.resolve("dist/public")));
+      app.get("*", (_req, res) => {
+        res.sendFile(path.resolve("dist/public/index.html"));
+      });
+    }
   } else {
     // Serve static files in production
     const path = await import("path");
