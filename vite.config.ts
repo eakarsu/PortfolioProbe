@@ -1,12 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
     react(),
-    // Remove Replit-specific plugins for Vercel deployment
-    // Only include essential plugins
   ],
   resolve: {
     alias: {
@@ -19,16 +20,12 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
-    // Explicitly disable watch for production
     watch: false,
-    // Add timeout to prevent hanging
     rollupOptions: {
       onwarn(warning, warn) {
-        // Suppress certain warnings that can cause issues
         if (warning.code === 'MODULE_LEVEL_DIRECTIVE') return;
         warn(warning);
       }
     }
   },
 });
-
