@@ -186,7 +186,7 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
       formData.append('Body', message);
       formData.append('MessageSid', `SM${Date.now()}${Math.random().toString(36).substr(2, 9)}`);
       
-      const response = await fetch('https://api.orderlybite.com/sms', {
+      const response = await fetch('https://orderlybite.com/sms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

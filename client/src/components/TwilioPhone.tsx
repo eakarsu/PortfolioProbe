@@ -187,8 +187,8 @@ export default function TwilioPhone() {
                 To enable calling and SMS features, please configure your Twilio API endpoints:
               </p>
               <ul className="text-xs text-yellow-600 mt-2 space-y-1">
-                <li>• https://api.orderlybite.com/token</li>
-                <li>• https://api.orderlybite.com/sms</li>
+                <li>• https://orderlybite.com/token</li>
+                <li>• https://orderlybite.com/sms</li>
               </ul>
             </div>
           )}
