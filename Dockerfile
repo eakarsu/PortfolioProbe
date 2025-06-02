@@ -25,8 +25,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install only production dependencies
-RUN npm ci --only=production && npm cache clean --force
+# Install ALL dependencies initially (needed because server imports vite)
+RUN npm ci && npm cache clean --force
 
 # Create a non-root user
 RUN addgroup -g 1001 -S nodejs && \
