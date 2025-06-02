@@ -13,8 +13,8 @@ RUN npm ci
 # Copy application code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the client and server
+RUN npx vite build && node build.config.js
 
 # Production stage
 FROM node:20-alpine AS production
