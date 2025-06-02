@@ -34,10 +34,8 @@ RUN addgroup -g 1001 -S nodejs && \
 
 # Copy built application from builder stage
 COPY --from=builder --chown=nextjs:nodejs /app/dist ./dist
-COPY --from=builder --chown=nextjs:nodejs /app/client/dist ./client/dist
 
-# Copy other necessary files
-COPY --chown=nextjs:nodejs ./server ./server
+# Copy other necessary files (these contain the source code needed for the built server)
 COPY --chown=nextjs:nodejs ./shared ./shared
 
 # Switch to non-root user
