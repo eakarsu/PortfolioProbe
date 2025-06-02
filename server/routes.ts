@@ -155,7 +155,7 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
   // Twilio token endpoint (proxy to your external API)
   app.post("/api/twilio/token", async (req, res) => {
     try {
-      const response = await fetch('https://api.orderlybite.com/token', {
+      const response = await fetch('https://orderlybite.com/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
