@@ -28,7 +28,9 @@ function Router() {
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/menu" component={MenuPage} />
+      <Route path="/services" component={CategoriesPage} />
       <Route path="/categories" component={CategoriesPage} />
+      <Route path="/sectors" component={SectorsPage} />
       <Route path="/build-your-own" component={BuildYourOwnPage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/contact" component={ContactPage} />

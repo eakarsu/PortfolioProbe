@@ -1,53 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, ShoppingCart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import CustomizationModal from "@/components/CustomizationModal";
+import { getSectorById, parsePrompt2File, parseRulesFile, type ParsedCategory, type ParsedRule } from "@/lib/sectors";
 
-// Helper function to get food image based on item name and category
-const getFoodImage = (itemName: string, categoryName: string): string => {
+// Helper function to get service image based on item name and category
+const getServiceImage = (itemName: string, categoryName: string, sectorId?: string): string => {
   const name = itemName.toLowerCase();
   const category = categoryName.toLowerCase();
   
-  // Acai Bowls
-  if (category.includes("acai")) return "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=300&fit=crop&auto=format";
-  
-  // Beverages
-  if (category.includes("bottled") || category.includes("drink")) {
-    if (name.includes("coke") || name.includes("pepsi") || name.includes("sprite")) return "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("water")) return "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("juice")) return "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("gatorade")) return "https://images.unsplash.com/photo-1594736797933-d0651ba87360?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("monster") || name.includes("red bull")) return "https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("snapple")) return "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop&auto=format";
-    return "https://images.unsplash.com/photo-1546173159-315724a31696?w=400&h=300&fit=crop&auto=format";
+  // Auto Repair Services
+  if (sectorId === "auto_repair" || category.includes("engine") || category.includes("brake") || category.includes("tire") || category.includes("electrical") || category.includes("air conditioning")) {
+    if (category.includes("engine") || name.includes("oil") || name.includes("tune")) return "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("brake") || name.includes("brake")) return "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("tire") || name.includes("tire") || name.includes("wheel")) return "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("electrical") || name.includes("battery") || name.includes("alternator")) return "https://images.unsplash.com/photo-1600298881974-6be191ceeda1?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("air conditioning") || name.includes("ac")) return "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop&auto=format";
   }
   
-  // Breakfast items
-  if (category.includes("breakfast") || category.includes("omelet")) {
-    if (name.includes("french toast")) return "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("omelet")) return "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("bagel")) return "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("wrap")) return "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&auto=format";
-    return "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=300&fit=crop&auto=format";
+  // Beauty Salon Services
+  if (sectorId === "beauty_salon" || category.includes("hair") || category.includes("nail") || category.includes("facial") || category.includes("massage")) {
+    if (category.includes("hair") || name.includes("haircut") || name.includes("color")) return "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("nail") || name.includes("manicure") || name.includes("pedicure")) return "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("facial") || name.includes("facial") || name.includes("skin")) return "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("massage") || name.includes("massage")) return "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400&h=300&fit=crop&auto=format";
   }
   
-  // Sandwiches
-  if (category.includes("sandwich") || category.includes("hero") || category.includes("panini")) {
-    if (name.includes("chicken")) return "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("roast beef")) return "https://images.unsplash.com/photo-1619946794135-5bc917a27793?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("turkey")) return "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("italian")) return "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?w=400&h=300&fit=crop&auto=format";
-    if (name.includes("cuban")) return "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop&auto=format";
-    return "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?w=400&h=300&fit=crop&auto=format";
+  // Education & Tutoring Services
+  if (sectorId === "education_tutoring" || category.includes("tutoring") || category.includes("lesson") || category.includes("course")) {
+    if (name.includes("math") || name.includes("algebra") || name.includes("calculus")) return "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("english") || name.includes("writing") || name.includes("literature")) return "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("science") || name.includes("chemistry") || name.includes("physics")) return "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("computer") || name.includes("coding") || name.includes("programming")) return "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=300&fit=crop&auto=format";
   }
   
-  // Chips
-  if (category.includes("chips")) {
-    if (name.includes("doritos")) return "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=300&fit=crop&auto=format";
-    return "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&h=300&fit=crop&auto=format";
+  // Healthcare Services
+  if (sectorId === "healthcare" || category.includes("medical") || category.includes("dental") || category.includes("therapy")) {
+    if (category.includes("dental") || name.includes("dental") || name.includes("teeth")) return "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("therapy") || name.includes("therapy") || name.includes("physical")) return "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("checkup") || name.includes("consultation")) return "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Event Planning Services
+  if (sectorId === "event_planning" || category.includes("event") || category.includes("wedding") || category.includes("party")) {
+    if (category.includes("wedding") || name.includes("wedding")) return "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=crop&auto=format";
+    if (category.includes("party") || name.includes("birthday") || name.includes("celebration")) return "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("corporate") || name.includes("conference")) return "https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&h=300&fit=crop&auto=format";
+  }
+  
+  // Financial Services
+  if (sectorId === "financial_services" || category.includes("financial") || category.includes("investment") || category.includes("insurance")) {
+    if (name.includes("investment") || name.includes("portfolio")) return "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("insurance") || name.includes("policy")) return "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop&auto=format";
+    if (name.includes("loan") || name.includes("mortgage")) return "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&auto=format";
+    return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&auto=format";
   }
   
   // Salads
