@@ -1,13 +1,13 @@
 import { Link } from "wouter";
-import { Utensils, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Settings, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 export default function Footer() {
   const quickLinks = [
     { name: "Home", path: "/" },
-    { name: "Menu", path: "/menu" },
+    { name: "Services", path: "/services" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
-    { name: "Catering", path: "#" },
+    { name: "Sectors", path: "/sectors" },
   ];
 
   const customerService = [
@@ -25,11 +25,11 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Utensils className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">Orderly Bite</span>
+              <Settings className="h-8 w-8 text-primary" />
+              <span className="text-2xl font-bold">ServiceHub AI</span>
             </div>
             <p className="text-gray-300 mb-4">
-              Bringing gourmet dining experiences directly to your doorstep with fresh ingredients and culinary excellence.
+              Revolutionizing service industries with AI-powered platforms, SMS integration, and voice communication across all sectors.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">

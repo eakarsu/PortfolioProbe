@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { ShoppingCart, Menu, X, Utensils } from "lucide-react";
+import { ShoppingCart, Menu, X, Settings } from "lucide-react";
 import { useCart, getTotalItems } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 
@@ -11,9 +11,8 @@ export default function Header() {
 
   const navigation = [
     { name: "Home", path: "/" },
-    { name: "Menu", path: "/menu" },
-    { name: "Categories", path: "/categories" },
-    { name: "Build Your Own", path: "/build-your-own" },
+    { name: "Services", path: "/services" },
+    { name: "Sectors", path: "/sectors" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
@@ -32,9 +31,9 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <Utensils className="h-8 w-8 text-primary" />
+            <Settings className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-secondary">
-              Orderly Bite
+              ServiceHub AI
             </span>
           </Link>
 
