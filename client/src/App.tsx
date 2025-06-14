@@ -11,6 +11,7 @@ import HomePage from "@/pages/HomePage";
 import MenuPage from "@/pages/MenuPage";
 import BuildYourOwnPage from "@/pages/BuildYourOwnPage";
 import CategoriesPage from "@/pages/CategoriesPageImproved";
+import SectorsPage from "@/pages/SectorsPage";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import CheckoutPage from "@/pages/CheckoutPage";
