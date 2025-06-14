@@ -160,7 +160,8 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
   // Twilio token endpoint (proxy to your external API)
   app.post("/api/twilio/token", async (req, res) => {
     try {
-      const response = await fetch('https://orderlybite.com/token', {
+      const tokenUrl = process.env.TOKEN_WEBHOOK_URL || 'https://orderlybite.com/token';
+      const response = await fetch(tokenUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -186,12 +187,14 @@ Limit to 2-3 recommendations that best match the user's preferences.`;
       
       // Create form data as expected by your API
       const formData = new URLSearchParams();
+      const twilioNumber = process.env.TWILIO_PHONE_NUMBER || '+18044092778';
       formData.append('From', to); // Use the customer's phone number as caller ID
-      formData.append('To', '+18044092778'); // Your Twilio number
+      formData.append('To', twilioNumber); // Your Twilio number
       formData.append('Body', message);
       formData.append('MessageSid', `SM${Date.now()}${Math.random().toString(36).substr(2, 9)}`);
       
-      const response = await fetch('https://orderlybite.com/sms', {
+      const smsUrl = process.env.SMS_WEBHOOK_URL || 'https://orderlybite.com/sms';
+      const response = await fetch(smsUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
