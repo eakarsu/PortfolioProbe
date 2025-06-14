@@ -4,10 +4,9 @@ import { Settings, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 export default function Footer() {
   const quickLinks = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
+    { name: "Sectors", path: "/sectors" },
     { name: "About Us", path: "/about" },
     { name: "Contact", path: "/contact" },
-    { name: "Sectors", path: "/sectors" },
   ];
 
   const customerService = [

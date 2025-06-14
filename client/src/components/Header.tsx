@@ -11,7 +11,6 @@ export default function Header() {
 
   const navigation = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
     { name: "Sectors", path: "/sectors" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
