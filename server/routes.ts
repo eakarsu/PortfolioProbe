@@ -1,5 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import express from "express";
+import path from "path";
 import { storage } from "./storage";
 import { insertOrderSchema, insertContactMessageSchema } from "@shared/schema";
 import OpenAI from "openai";
@@ -9,6 +11,9 @@ const openai = new OpenAI({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Serve attached_assets as static files
+  app.use('/attached_assets', express.static(path.resolve(process.cwd(), 'attached_assets')));
+
   // Get all menu items
   app.get("/api/menu", async (req, res) => {
     try {
